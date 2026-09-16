@@ -56,6 +56,17 @@ Set `ENVIRONMENT=production`, an explicit PostgreSQL `DATABASE_URL`, HTTPS `ALLO
 docker compose up --build
 ```
 
+### Render public deployment
+
+The repository includes `render.yaml` for a Docker web service and managed PostgreSQL database. In Render, choose **New → Blueprint**, select this repository, and provide these values when prompted:
+
+```text
+ALLOWED_ORIGINS=["https://YOUR-SERVICE.onrender.com"]
+ALLOWED_HOSTS=["YOUR-SERVICE.onrender.com"]
+```
+
+Render supplies the PostgreSQL connection string and assigned `PORT`; the image runs migrations before starting the API. Use `/health/ready` as the health check. The free service is suitable for a judge-accessible demo, though it can spin down when idle and free PostgreSQL is time-limited.
+
 ## Competition submission
 
 Use [docs/submission.md](docs/submission.md) for the form description. The transcribed requirements are in [docs/challenge.md](docs/challenge.md), and the recording walkthrough is in [docs/demo-script.md](docs/demo-script.md). Add the public repository and uploaded-video URLs after publishing.

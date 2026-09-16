@@ -1,0 +1,13 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.pip-audit-cache/
+*.db
+*.db-*
+node_modules/
+test-results/
+playwright-report/
+submission/*.webm

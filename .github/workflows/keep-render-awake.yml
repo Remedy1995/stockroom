@@ -1,0 +1,19 @@
+name: Keep Stockroom demo awake
+
+on:
+  schedule:
+    # GitHub Actions supports scheduled runs no more frequently than every five minutes.
+    - cron: "3-58/5 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Request the readiness endpoint
+        run: >-
+          curl --fail --silent --show-error --retry 2 --max-time 30
+          https://stockroom-api-remedy1995.onrender.com/health/ready

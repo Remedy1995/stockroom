@@ -67,6 +67,8 @@ ALLOWED_HOSTS=["stockroom-api-remedy1995.onrender.com"]
 
 Render supplies the PostgreSQL connection string and assigned `PORT`; the image runs migrations before starting the API. Use `/health/ready` as the health check. The free service is suitable for a judge-accessible demo, though it can spin down when idle and free PostgreSQL is time-limited.
 
+The repository's `keep-render-awake` GitHub Actions workflow requests `/health/ready` every five minutes to keep the free demo service active. GitHub schedules are best effort and public-repository schedules are disabled after 60 days without repository activity, so upgrade the service for a production availability guarantee.
+
 ## Competition submission
 
 Use [docs/submission.md](docs/submission.md) for the form description. The transcribed requirements are in [docs/challenge.md](docs/challenge.md), and the recording walkthrough is in [docs/demo-script.md](docs/demo-script.md). Add the public repository and uploaded-video URLs after publishing.

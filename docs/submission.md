@@ -8,5 +8,5 @@ The API is designed for operational safety. It uses strict request models, datab
 
 The repository includes integration tests that verify authentication, authorization, workspace isolation, validation, the CRUD lifecycle, audit logging, conflict handling, session revocation, and health/security headers. The interactive OpenAPI reference is available at `/docs` when the app runs.
 
-Public GitHub repository URL: _Add after publishing_  
-Demo video URL: _Add after recording/uploading_
+Public GitHub repository URL: https://github.com/Remedy1995/stockroom  
+Demo video: included in the repository at `submission/stockroom-api-demo.mp4`

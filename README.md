@@ -59,3 +59,5 @@ docker compose up --build
 ## Competition submission
 
 Use [docs/submission.md](docs/submission.md) for the form description. The transcribed requirements are in [docs/challenge.md](docs/challenge.md), and the recording walkthrough is in [docs/demo-script.md](docs/demo-script.md). Add the public repository and uploaded-video URLs after publishing.
+
+Public repository: [github.com/Remedy1995/stockroom](https://github.com/Remedy1995/stockroom). The demo video is included at [submission/stockroom-api-demo.mp4](submission/stockroom-api-demo.mp4).

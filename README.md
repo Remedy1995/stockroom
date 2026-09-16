@@ -58,11 +58,11 @@ docker compose up --build
 
 ### Render public deployment
 
-The repository includes `render.yaml` for a Docker web service and managed PostgreSQL database. In Render, choose **New → Blueprint**, select this repository, and provide these values when prompted:
+The repository includes `render.yaml` for a Docker web service and managed PostgreSQL database. The public deployment is available at [stockroom-api-remedy1995.onrender.com](https://stockroom-api-remedy1995.onrender.com). Its interactive Swagger documentation is at [/docs](https://stockroom-api-remedy1995.onrender.com/docs).
 
 ```text
-ALLOWED_ORIGINS=["https://YOUR-SERVICE.onrender.com"]
-ALLOWED_HOSTS=["YOUR-SERVICE.onrender.com"]
+ALLOWED_ORIGINS=["https://stockroom-api-remedy1995.onrender.com"]
+ALLOWED_HOSTS=["stockroom-api-remedy1995.onrender.com"]
 ```
 
 Render supplies the PostgreSQL connection string and assigned `PORT`; the image runs migrations before starting the API. Use `/health/ready` as the health check. The free service is suitable for a judge-accessible demo, though it can spin down when idle and free PostgreSQL is time-limited.
@@ -71,4 +71,4 @@ Render supplies the PostgreSQL connection string and assigned `PORT`; the image 
 
 Use [docs/submission.md](docs/submission.md) for the form description. The transcribed requirements are in [docs/challenge.md](docs/challenge.md), and the recording walkthrough is in [docs/demo-script.md](docs/demo-script.md). Add the public repository and uploaded-video URLs after publishing.
 
-Public repository: [github.com/Remedy1995/stockroom](https://github.com/Remedy1995/stockroom). The demo video is included at [submission/stockroom-api-demo.mp4](submission/stockroom-api-demo.mp4).
+Public repository: [github.com/Remedy1995/stockroom](https://github.com/Remedy1995/stockroom). Live API: [stockroom-api-remedy1995.onrender.com](https://stockroom-api-remedy1995.onrender.com). Swagger: [/docs](https://stockroom-api-remedy1995.onrender.com/docs). The demo video is included at [submission/stockroom-api-demo.mp4](submission/stockroom-api-demo.mp4).

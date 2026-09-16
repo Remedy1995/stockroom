@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 
+from app.config import Settings
 from app.db import Base, SessionLocal, engine
 from app.main import app, issue_action_token
 from app.models import User
@@ -102,6 +103,15 @@ def test_openapi_lists_all_product_crud_operations():
     assert schema['paths']['/api/v1/products/{product_id}']['get']['summary'] == 'Get one product'
     assert schema['paths']['/api/v1/products/{product_id}']['put']['summary'] == 'Update a product'
     assert schema['paths']['/api/v1/products/{product_id}']['delete']['summary'] == 'Delete a product'
+
+
+def test_railway_production_settings_use_the_generated_domain():
+    settings = Settings(
+        environment='production', database_url='postgresql://stockroom:password@db/stockroom', secure_cookies=True,
+        railway_environment='production', railway_public_domain='stockroom-production.up.railway.app',
+    )
+    assert settings.allowed_hosts == ['stockroom-production.up.railway.app']
+    assert settings.allowed_origins == ['https://stockroom-production.up.railway.app']
 
 
 def test_password_reset_is_single_use_and_revokes_existing_sessions():

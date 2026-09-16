@@ -56,17 +56,16 @@ Set `ENVIRONMENT=production`, an explicit PostgreSQL `DATABASE_URL`, HTTPS `ALLO
 docker compose up --build
 ```
 
-### Railway public deployment
+### Render public deployment
 
-The repository includes `railway.toml`, which tells Railway to build the root Dockerfile and probe `/health/ready`. In Railway, create a project, choose **Deploy from GitHub repo**, select this repository, and add a PostgreSQL service. In the API service's Variables tab, set:
+The repository includes `render.yaml` for a Docker web service and managed PostgreSQL database. In Render, choose **New → Blueprint**, select this repository, and provide these values when prompted:
 
 ```text
-ENVIRONMENT=production
-DATABASE_URL=${{Postgres.DATABASE_URL}}
-SECURE_COOKIES=true
+ALLOWED_ORIGINS=["https://YOUR-SERVICE.onrender.com"]
+ALLOWED_HOSTS=["YOUR-SERVICE.onrender.com"]
 ```
 
-Generate a public domain in **Settings → Networking**. Railway supplies `PORT`; the image runs migrations before starting the API. Its generated public domain is automatically used for trusted hosts and same-origin browser requests.
+Render supplies the PostgreSQL connection string and assigned `PORT`; the image runs migrations before starting the API. Use `/health/ready` as the health check. The free service is suitable for a judge-accessible demo, though it can spin down when idle and free PostgreSQL is time-limited.
 
 ## Competition submission
 

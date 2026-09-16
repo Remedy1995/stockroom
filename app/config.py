@@ -16,27 +16,18 @@ class Settings(BaseSettings):
     auth_limit: int = 15
     api_limit: int = 300
     rate_window_seconds: int = 60
-    railway_environment: str | None = None
-    railway_public_domain: str | None = None
 
     @model_validator(mode='after')
     def production_safety(self):
         if self.environment not in {'development', 'test', 'production'}:
             raise ValueError('Invalid environment')
         if self.environment == 'production':
-            if self.railway_environment:
-                if self.railway_public_domain:
-                    self.allowed_hosts = [self.railway_public_domain]
-                    self.allowed_origins = [f'https://{self.railway_public_domain}']
-                else:
-                    self.allowed_hosts = ['*.up.railway.app']
-                    self.allowed_origins = []
             if not self.secure_cookies or not self.database_url.startswith('postgresql'):
                 raise ValueError('Production requires PostgreSQL and secure cookies')
             if '*' in self.allowed_hosts or not self.allowed_hosts:
                 raise ValueError('Production requires explicit allowed hosts')
-            if any(not o.startswith('https://') for o in self.allowed_origins):
-                raise ValueError('Production CORS origins must use HTTPS')
+            if not self.allowed_origins or any(not o.startswith('https://') for o in self.allowed_origins):
+                raise ValueError('Production requires explicit HTTPS origins')
         return self
 
 
